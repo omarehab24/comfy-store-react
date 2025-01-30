@@ -2,8 +2,32 @@ import { BsCart3, BsMoonFill, BsSunFill } from 'react-icons/bs'
 import { FaBarsStaggered } from "react-icons/fa6";
 import { NavLink } from 'react-router-dom'
 import NavLinks from './NavLinks'
+import { useState, useEffect } from 'react'
+
+const themes = {
+    winter: "winter",
+    dracula: "dracula"
+}
+
+const getThemeFromLocalStorage = () => {
+    return localStorage.getItem("theme") || themes.winter
+}
 
 function NavBar() {
+    const [theme, setTheme] = useState(getThemeFromLocalStorage());
+
+    const toggleTheme = () => {
+        const { winter, dracula } = themes
+        const newTheme = theme === winter ? dracula : winter
+        document.documentElement.setAttribute("data-theme", theme)
+        setTheme(newTheme)
+    }
+
+    useEffect(() => {
+        document.documentElement.setAttribute("data-theme", theme)
+        localStorage.setItem("theme", theme)
+    }, [theme])
+
     return (
         <nav className='bg-base-300'>
             <div className='navbar align-element'>
@@ -27,6 +51,13 @@ function NavBar() {
                 </div>
                 <div className='navbar-end'>
                     {/* THEME */}
+                    <label className='swap swap-rotate'>
+                        <input type="checkbox" onChange={toggleTheme} checked={theme === themes.dracula} />
+                        {/* sun icon */}
+                        <BsSunFill className='swap-on h-4 w-4' />
+                        {/* moon icon */}
+                        <BsMoonFill className='swap-off h-4 w-4' />
+                    </label>
                     {/* CART */}
                     <NavLink to="/cart" className="btn btn-ghost btn-circle btn-md ml-4">
                         <div className="indicator">
