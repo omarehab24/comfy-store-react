@@ -1,5 +1,9 @@
+import { Hero } from "../components";
+
 const Landing = () => {
-  return <h1>Landing Page</h1>;
+  return <>
+    <Hero />
+  </>
 };
 
 export default Landing;
