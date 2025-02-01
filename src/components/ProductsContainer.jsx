@@ -1,7 +1,12 @@
+import ProductsGrid from "./ProductsGrid";
+import ProductsList from "./ProductsList";
 
 function ProductsContainer() {
     return (
-        <div>ProductsContainer</div>
+        <>
+            <ProductsList />
+            <ProductsGrid />
+        </>
     )
 }
 
