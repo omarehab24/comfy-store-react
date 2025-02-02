@@ -1,5 +1,6 @@
-function FormSelect({ label, name, list, defaultValue, size }) {
+import PropTypes from "prop-types"
 
+function FormSelect({ label, name, list, defaultValue, size }) {
     return (
         <div className="form-control">
             <label htmlFor={name} className="label">
@@ -12,6 +13,14 @@ function FormSelect({ label, name, list, defaultValue, size }) {
             </select>
         </div>
     )
+}
+
+FormSelect.propTypes = {
+    label: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    list: PropTypes.array.isRequired,
+    defaultValue: PropTypes.string,
+    size: PropTypes.string
 }
 
 export default FormSelect

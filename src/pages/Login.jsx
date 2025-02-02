@@ -12,7 +12,7 @@ const Login = () => {
       </div>
       <button type="button" className="btn btn-secondary btn-block">Guest User</button>
       <p className="text-center">
-        Don't have an account? <Link to="/register" className="ml-2 link link-hover link-primary capitalize">register</Link>
+        Don&apos;t have an account? <Link to="/register" className="ml-2 link link-hover link-primary capitalize">register</Link>
       </p>
     </Form>
 

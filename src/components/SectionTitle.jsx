@@ -1,3 +1,4 @@
+import PropTypes from "prop-types"
 
 function SectionTitle({ text }) {
     return (
@@ -7,6 +8,10 @@ function SectionTitle({ text }) {
             </h2>
         </div>
     )
+}
+
+SectionTitle.propTypes = {
+    text: PropTypes.string.isRequired
 }
 
 export default SectionTitle

@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom"
+import PropTypes from "prop-types";
 
 function SubmitButton({ text }) {
   const navigate = useNavigate();
@@ -8,13 +9,17 @@ function SubmitButton({ text }) {
     <button type="submit" className="btn btn-primary btn-block">
       <span>
         {
-        isSubmitting ? 
-        <><span className="loading loading-spinner">Submitting...</span></>
-         : text || "Submit"
-         }
+          isSubmitting ?
+            <><span className="loading loading-spinner">Submitting...</span></>
+            : text || "Submit"
+        }
       </span>
     </button>
   )
+}
+
+SubmitButton.propTypes = {
+  text: PropTypes.string
 }
 
 export default SubmitButton
