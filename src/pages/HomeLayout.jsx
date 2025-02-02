@@ -1,15 +1,22 @@
 // Outlet: Renders the matching child route of a parent route or nothing if no child route matches. 
-import { Outlet } from 'react-router-dom';
-import { Header, NavBar } from '../components';
+import { Outlet, useNavigation } from 'react-router-dom';
+import { Header, NavBar, Loading } from '../components';
 
 const HomeLayout = () => {
+  const navigation = useNavigation();
+  const isPageLoading = navigation.state === 'loading';
+
   return (
     <>
       <Header />
       <NavBar />
-      <section className='align-element py-20'>
-        <Outlet />
-      </section>
+      {isPageLoading ? (
+        <Loading />
+      ) : (
+        <section className='align-element py-20'>
+          <Outlet />
+        </section>
+      )}
     </>
   );
 };
