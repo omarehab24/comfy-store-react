@@ -14,7 +14,7 @@ function FormCheckbox({ label, name, defaultValue, size }) {
 FormCheckbox.propTypes = {
     label: PropTypes.string,
     name: PropTypes.string.isRequired,
-    defaultValue: PropTypes.bool,
+    defaultValue: PropTypes.string,
     size: PropTypes.string
 }
 
