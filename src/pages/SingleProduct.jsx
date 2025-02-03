@@ -36,7 +36,7 @@ const SingleProduct = () => {
   }
 
   const handleAmount = (e) => {
-    setAmount(e.target.value)
+    setAmount(+e.target.value) // prefix + to convert to number
   }
 
   return <section>
