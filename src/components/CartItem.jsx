@@ -53,7 +53,7 @@ CartItem.propTypes = {
         cartID: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
         image: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
+        price: PropTypes.string.isRequired,
         amount: PropTypes.number.isRequired,
         company: PropTypes.string.isRequired,
         productColor: PropTypes.string.isRequired
