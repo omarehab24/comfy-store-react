@@ -6,7 +6,7 @@ function FormSelect({ label, name, list, defaultValue, size }) {
             <label htmlFor={name} className="label">
                 <span className="label-text capitalize">{label}</span>
             </label>
-            <select name={name} defaultValue={defaultValue} className={`select select-bordered ${size}`} id={name}>
+            <select name={name} defaultValue={defaultValue} className={`select select-bordered ${size} mt-2`} id={name}>
                 {list.map((item) => (
                     <option key={item} value={item}>{item}</option>
                 ))}

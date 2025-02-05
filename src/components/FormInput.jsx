@@ -2,12 +2,12 @@ import PropTypes from "prop-types"
 
 function FormInput({ label, name, type, defaultValue, size }) {
     return (
-        <label className="form-control">
-            <div className="label">
+        <div className="form-control">
+            <label htmlFor={name} className="label">
                 <span className="label-text capitalize">{label}</span>
-            </div>
-            <input type={type} name={name} defaultValue={defaultValue} className={`input input-bordered ${size}`} />
-        </label>
+            </label>
+            <input type={type} name={name} defaultValue={defaultValue} className={`input input-bordered ${size} w-full mt-2`} />
+        </div>
     )
 }
 
