@@ -19,7 +19,10 @@ import { ErrorElement } from './components';
 import { loader as landingLoader } from './pages/Landing'
 import { loader as singleProductLoader } from './pages/SingleProduct'
 import { loader as productsLoader } from './pages/Products'
+
 import { action as registerAction } from './pages/Register'
+import { action as loginAction } from './pages/Login'
+import { store } from './utils/store'
 
 const router = createBrowserRouter([
   {
@@ -67,6 +70,7 @@ const router = createBrowserRouter([
     path: '/login',
     element: <Login />,
     errorElement: <Error />,
+    action: loginAction(store) // Is immediately invoked
   },
   {
     path: '/register',
@@ -77,7 +81,6 @@ const router = createBrowserRouter([
 ])
 
 function App() {
-
   return <RouterProvider router={router} />
 }
 

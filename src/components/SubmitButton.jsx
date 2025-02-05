@@ -1,19 +1,20 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigation } from "react-router-dom"
 import PropTypes from "prop-types";
 
 function SubmitButton({ text }) {
-  const navigate = useNavigate();
-  const isSubmitting = navigate.state === "submitting";
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === "submitting";
 
   return (
-    <button type="submit" className="btn btn-primary btn-block">
-      <span>
-        {
-          isSubmitting ?
-            <><span className="loading loading-spinner">Submitting...</span></>
-            : text || "Submit"
-        }
-      </span>
+    <button type="submit" className="btn btn-primary btn-block" disabled={isSubmitting}>
+      {isSubmitting ? (
+        <>
+          <span className="loading loading-spinner"></span>
+          Submitting...
+        </>
+      )
+        : (text || "Submit")
+      }
     </button>
   )
 }
