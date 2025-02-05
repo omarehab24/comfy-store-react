@@ -4,7 +4,6 @@ function PaginationContainer() {
     const { meta } = useLoaderData()
     const { pageCount, page } = meta.pagination
     const { search, pathname } = useLocation()
-    console.log("pathname: ", pathname)
     const navigate = useNavigate()
 
     // See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from
