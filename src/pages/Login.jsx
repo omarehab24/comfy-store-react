@@ -12,7 +12,6 @@ export const action = (store) => async ({ request }) => {
   try {
     const response = await customFetch.post("/auth/local", data)
     store.dispatch(login(response.data));
-    toast.success("Logged in successfully!");
     return redirect("/");
   } catch (error) {
     const errorMessage = error?.response?.data?.error?.message || "Something went wrong";
