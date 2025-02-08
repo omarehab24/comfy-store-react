@@ -6,20 +6,32 @@ import { toast } from 'react-toastify';
 import { clearCart } from '../features/cart/cartSlice';
 
 export const action = (store) => async ({ request }) => {
-  // const formData = await request.formData();
-  // const data = Object.fromEntries(formData);
-  // try {
-  //   await customFetch.post("/orders", data);
-  //   store.dispatch(clearCart());
-  //   return redirect("/orders");
-  // } catch (error) {
-  //   const errorMessage = error?.response?.data?.error?.message || "Something went wrong";
-  //   toast.error(errorMessage);
-  //   return null;
-  // }
-  console.log(store.getState());
-
-  return null
+  const formData = await request.formData();
+  const { name, address } = Object.fromEntries(formData);
+  const user = store.getState().userState.user;
+  const { cartItems, orderTotal, numItemsInCart } = store.getState().cartState;
+  const info = {
+    name,
+    address,
+    orderTotal: formatPrice(orderTotal), // for display
+    chargeTotal: orderTotal, // for the payment provider
+    numItemsInCart,
+    cartItems
+  }
+  try {
+    await customFetch.post("/orders", { data: info }, {
+      headers: {
+        Authorization: `Bearer ${user.token}`
+      }
+    });
+    store.dispatch(clearCart());
+    toast.success("Order placed successfully!");
+    return redirect("/orders");
+  } catch (error) {
+    const errorMessage = error?.response?.data?.error?.message || "Something went wrong";
+    toast.error(errorMessage);
+    return null;
+  }
 }
 
 function CheckoutForm() {
