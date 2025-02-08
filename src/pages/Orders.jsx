@@ -39,11 +39,17 @@ export const loader = (store) => async ({ request }) => {
 }
 
 const Orders = () => {
-  return (
-    <div>
-      <h1>Orders</h1>
-    </div>
-  );
+  const { meta } = useLoaderData();
+
+  if (meta.pagination.total === 0) {
+    return <SectionTitle text='No orders found' />;
+  }
+
+  return <>
+    <SectionTitle text='Your Orders' />
+    <OrdersList />
+    <PaginationContainer />
+  </>
 };
 
 export default Orders;

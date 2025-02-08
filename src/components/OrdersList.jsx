@@ -1,7 +1,42 @@
+import { useLoaderData } from 'react-router-dom';
+import day from 'dayjs';
+import advancedFormat from 'dayjs/plugin/advancedFormat';
+day.extend(advancedFormat);
 
 function OrdersList() {
-  return (
-    <div>OrdersList</div>
-  )
+    const { meta, orders } = useLoaderData();
+    return (
+        <div className='mt-8'>
+            <h4 className='capitalize mb-4'>total orders: {meta.pagination.total}</h4>
+            <div className='overflow-x-auto'>
+                <table className='table table-zebra'>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Products</th>
+                            <th>Cost</th>
+                            <th className='hidden sm:block'>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {orders.map((order) => {
+                            const id = order.id
+                            const { name, address, numItemsInCart, orderTotal, createdAt } = order.attributes
+                            return (
+                                <tr key={id}>
+                                    <td>{name}</td>
+                                    <td>{address}</td>
+                                    <td>{numItemsInCart}</td>
+                                    <td>{orderTotal}</td>
+                                    <td className='hidden sm:block'>{day(createdAt).format('h:mm a - MMM DD, YYYY')}</td>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    )
 }
 export default OrdersList
