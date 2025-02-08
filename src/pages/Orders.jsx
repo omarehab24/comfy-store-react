@@ -1,7 +1,7 @@
 import { redirect, useLoaderData } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { customFetch } from '../utils';
-import { OrdersList, PaginationContainer, SectionTitle } from '../components';
+import { OrdersList, ComplexPaginationContainer, SectionTitle } from '../components';
 
 export const loader = (store) => async ({ request }) => {
   const user = store.getState().userState.user;
@@ -17,7 +17,6 @@ export const loader = (store) => async ({ request }) => {
   // See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/fromEntries
   // Also see https://developer.mozilla.org/en-US/docs/Web/API/URL
   const params = Object.fromEntries([...new URL(request.url).searchParams]);
-  console.log("params: ", params)
   try {
     const response = await customFetch.get('/orders', {
       params,
@@ -48,7 +47,7 @@ const Orders = () => {
   return <>
     <SectionTitle text='Your Orders' />
     <OrdersList />
-    <PaginationContainer />
+    <ComplexPaginationContainer />
   </>
 };
 
