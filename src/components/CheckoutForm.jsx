@@ -28,7 +28,7 @@ export const action = (store) => async ({ request }) => {
     toast.success("Order placed successfully!");
     return redirect("/orders");
   } catch (error) {
-    if (error?.response?.status === 401) {
+    if (error?.response?.status === 401 || error?.response?.status === 403) {
       toast.error("You must be logged in to place an order");
       return redirect("/login");
     }
