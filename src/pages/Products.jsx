@@ -33,7 +33,6 @@ export const loader = (queryClient) => async ({ request }) => {
   // The Object.fromEntries() static method transforms a list of key-value pairs into an object.
   const params = Object.fromEntries(new URL(request.url).searchParams);
   const response = await queryClient.ensureQueryData(allProductsQuery(params));
-  console.log("response: ", response)
   const products = response.data.data
   const meta = response.data.meta
   return { products, meta, params }
