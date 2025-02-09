@@ -24,6 +24,7 @@ export const action = (store, queryClient) => async ({ request }) => {
         Authorization: `Bearer ${user.token}`
       }
     });
+    queryClient.removeQueries(["orders"]);
     store.dispatch(clearCart());
     toast.success("Order placed successfully!");
     return redirect("/orders");
