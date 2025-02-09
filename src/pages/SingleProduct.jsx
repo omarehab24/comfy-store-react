@@ -5,8 +5,15 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../features/cart/cartSlice';
 
+const singleProductQuery = (id) => {
+  return {
+    queryKey: ['product', id], // must pass in the id, otherwise every single product will be called from the same query key and will be cached together
+    queryFn: () => customFetch(`/products/${id}`)
+  }
+}
+
 export const loader = (queryClient) => async ({ params }) => {
-  const response = await customFetch(`/products/${params.id}`);
+  const response = await queryClient.ensureQueryData(singleProductQuery(params.id));
   return { product: response.data.data }
 }
 
