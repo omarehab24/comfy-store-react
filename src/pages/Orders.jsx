@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import { customFetch } from '../utils';
 import { OrdersList, ComplexPaginationContainer, SectionTitle } from '../components';
 
-export const loader = (store) => async ({ request }) => {
+export const loader = (store, queryClient) => async ({ request }) => {
   const user = store.getState().userState.user;
   if (!user) {
     toast.warn('You must be logged in to place an order');

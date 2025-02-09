@@ -4,7 +4,7 @@ import { useLoaderData } from "react-router-dom";
 
 const url = '/products';
 
-export const loader = async ({ request }) => {
+export const loader = (queryClient) => async ({ request }) => {
   // params: {
   //     "search": "",
   //     "category": "all",
