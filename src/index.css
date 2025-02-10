@@ -1,4 +1,5 @@
 @import "tailwindcss";
+
 @plugin "daisyui" {
   themes: winter --default, dracula;
   root: ":root";
@@ -10,6 +11,6 @@
 
 @layer components {
   .align-element {
-    @apply mx-auto max-w-6xl px-8
+    @apply mx-auto max-w-[80%] px-[4%]
   }
 }
